@@ -1,0 +1,142 @@
+{% extends 'admi/dashboard.html' %}
+{% block content %}
+
+<h3 class="bookingHeading">Employee Register</h3>
+<script>
+    if ('{{message}}' == true) {
+        alert('{{message}}')
+    }
+
+
+</script>
+
+<!-- <br><br><br>
+<form method="post">
+<div class="container">
+    <label for="">Name:</label><input type="text" name="emp_name" id="" class="">&nbsp;&nbsp;&nbsp;&nbsp;
+    <label for="">Phone:</label><input type="text" name="emp_phone" id="">&nbsp;&nbsp;&nbsp;&nbsp;
+    <label for="">Date of Birth:</label><input type="text" name="dob" id="">&nbsp;&nbsp;&nbsp;&nbsp;
+    <label for="">Sex:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Male</label> <input type="radio" name="sex" id="">
+    &nbsp;&nbsp;&nbsp;
+    <label for="">Female:</label> <input type="radio" name="sex" id=""> &nbsp;&nbsp;&nbsp;&nbsp;
+    <br><br>
+    <label for="">Address:</label><input type="text" name="" id="">&nbsp;&nbsp;&nbsp;&nbsp;
+    <label for="">E-Mail:</label><input type="text" name="" id="">&nbsp;&nbsp;&nbsp;&nbsp;
+    <label for="">Id-Proof:</label><select name="id_proof" id="">&nbsp;&nbsp;&nbsp;&nbsp;
+        <option value="" selected disabled>select</option>
+        <option value="aadhar">Aadhar</option>
+        <option value="dl">Driving License</option>
+        <option value="dl">Pan Card</option>
+    </select>&nbsp;&nbsp;&nbsp;
+    <label for="">Id-Proof Number:</label><input type="number" name="idproofnumber" id="">
+    <br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <label for="">Photo</label><input type="file" name="photo" id="">
+
+</div>
+</form>
+<br>
+<button type="button" class="btn btn-primary" onclick="history.back()">Back to Home</button>
+</div>
+</div> -->
+
+
+
+
+
+<div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="booking-form">
+
+                    <form method="post" enctype="multipart/form-data" onsubmit="return register_employee()">
+                        {% csrf_token %}
+                        <!-- <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <span class="form-label">Name</span>
+                                    <input class="form-control" type="text" placeholder="Enter your name">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <span class="form-label">Email</span>
+                                    <input class="form-control" type="email" placeholder="Enter your email">
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <span class="form-label">Name</span>
+                            <input class="form-control" type="text" placeholder="Enter Employee Name" name="emp_name"
+                                id="emp_name">
+
+                            <span class="select-arrow"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="form-label">Phone</span>
+                            <input class="form-control" type="tel" placeholder="Enter phone number" name="phone"
+                                id="phone" onchange="emp_checkNumberExist()" >
+                            <span id="emp_numberError" style="color: red;"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <span class="form-label">E-Mail</span>
+                            <input class="form-control" type="email" onchange="emp_checkEmailExist()"
+                                placeholder="Enter Email" name="email" id="email">
+                            <span id="emp_emailError" style="color: red;"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="form-label">Date of Birth</span>
+                            <input class="form-control" type="date" name="dob" id="dob">
+                        </div>
+                        <div class="form-group">
+                            <span class="form-label">Address</span>
+                            <textarea placeholder="Enter Address" name="address" class="form-control"
+                                id="address"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="form-group">
+                                    <span class="form-label">Id Proof</span>
+                                    <select class="form-control" type="date" required name="idproof" id="idproof">
+                                        <option value="" selected disabled>Select</option>
+                                        <option value="Aadhar Card">Aadhar</option>
+                                        <option value="Driving License">Driving License</option>
+                                        <option value="Pan Card">Pan Card</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <span class="form-label">Id Proof Number</span>
+                                        <input class="form-control" type="number" name="idproofnumber"
+                                            id="idproofnumber">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="form-label">Photo</span>
+                            <input class="form-control" type="file" name="emp_photo" id="emp_photo">
+                        </div>
+                        <div class="form-btn">
+                            <br>
+                            <button class="btn btn-primary" type="submit" id="emp_submit">Register</button>
+                        </div>
+                        <br>
+                        <div class="form-btn">
+                            <a href="home"><button class="btn btn-primary" type="button">Back to Home</button></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
